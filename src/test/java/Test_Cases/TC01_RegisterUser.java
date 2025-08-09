@@ -17,21 +17,21 @@ public class TC01_RegisterUser extends BaseTestClass {
             logger.info("Test Case 1: Register User started");
             HomePage homePage = new HomePage(driver);
             homePage.LaunchApp();
-            Assert.assertTrue(driver.getTitle().equals("Automation Exercise"),"Home Page is visible");;
-            Assert.assertTrue(homePage.gotoLoginTab(),"'New User Signup!' message is visible");
+            Assert.assertTrue(driver.getTitle().equals("Automation Exercise"),"Home Page is not visible");
+            Assert.assertTrue(homePage.signUpTab(),"'New User Signup!' message is not visible");
             LoginPage loginPage = new LoginPage(driver);
-            Assert.assertTrue(loginPage.signUp("abc","abc123@def.com"),"'ENTER ACCOUNT INFORMATION' message is visible");
+            Assert.assertTrue(loginPage.signUp("abc","abc123@def.com"),"'ENTER ACCOUNT INFORMATION' message is not visible");
             SignUpPage signUpPage = new SignUpPage(driver);
-            Assert.assertTrue(signUpPage.fillAccountInfo("Mr","abc","abc12@def","25","July","2001"),"Account information entered successfully");
-            Assert.assertTrue(signUpPage.fillAddressinfoandCreateAccount("abc","ABC","def","abc","def","India","Sikkim","Gangtok","123456","9876543210"),"ACCOUNT CREATED! message is visible");
-            Assert.assertTrue(signUpPage.accountCreatedVerification("abc"),"Logged in username is correct");
-            Assert.assertTrue(homePage.deleteAccount(),"'ACCOUNT DELETED!' message is displayed");
+            Assert.assertTrue(signUpPage.fillAccountInfo("Mr","abc","abc123@def","25","July","2001"),"Account information is not entered successfully");
+            Assert.assertTrue(signUpPage.fillAddressinfoandCreateAccount("abc","ABC","def","abc","def","India","Sikkim","Gangtok","123456","9876543210"),"ACCOUNT CREATED! message is not visible");
+            Assert.assertTrue(signUpPage.accountCreatedVerification("abc"),"Logged in username is not correct");
+            Assert.assertTrue(homePage.deleteAccount(),"'ACCOUNT DELETED!' message is not displayed");
             logger.info("Test case Passed.");
         }
 
         catch (Exception e)
         {
-            logger.error("Test case Failed.");
+            logger.error("Test case Failed due to " + e);
         }
 
     }

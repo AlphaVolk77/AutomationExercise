@@ -18,7 +18,7 @@ public class BaseTestClass
     private static final Logger logger = LoggerFactory.getLogger(BaseTestClass.class);
 
     @Parameters("browser")
-    @BeforeTest
+    @BeforeClass
     public void DriverManager(String browser)
     {
         if (browser.equalsIgnoreCase("chrome"))
@@ -40,7 +40,7 @@ public class BaseTestClass
         logger.info("Driver initiated");
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown()
     {
         if(driver != null)

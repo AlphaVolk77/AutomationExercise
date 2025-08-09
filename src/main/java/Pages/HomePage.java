@@ -1,6 +1,5 @@
 package Pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,11 +20,17 @@ public class HomePage extends BasePageObject {
     @FindBy(xpath = "//ul[@class='nav navbar-nav']//a[@href='/login']")
     WebElement loginTab;
 
+    @FindBy(xpath = "//section[@id='form']//div[@class='login-form']/h2")
+    WebElement loginToAccountmsg;
+
     @FindBy(xpath = "//section[@id='form']//div[@class='signup-form']/h2")
     WebElement newUserSignUpmsg;
 
     @FindBy(xpath = "//ul[@class='nav navbar-nav']//a[@href='/delete_account']")
     WebElement deletedAccountbtn;
+
+    @FindBy(xpath = "//ul[@class='nav navbar-nav']//a[@href='/logout']")
+    WebElement logOutbtn;
 
     @FindBy(xpath = "//section[@id='form']/div/div/div/h2[@data-qa='account-deleted']")
     WebElement accountDeletedmsg;
@@ -41,7 +46,15 @@ public class HomePage extends BasePageObject {
         logger.info("AutomationExercise website launched");
     }
 
-    public boolean gotoLoginTab()
+    public boolean loginTab()
+    {
+        //expwait();
+        loginTab.click();
+        logger.info("Login tab is clicked");
+        return loginToAccountmsg.isDisplayed();
+    }
+
+    public boolean signUpTab()
     {
         //expwait();
         loginTab.click();
@@ -60,5 +73,17 @@ public class HomePage extends BasePageObject {
             logger.debug("Exception Caught: " + e);
         }
         return accountDeletedmsg.isDisplayed();
+    }
+
+    public boolean logoutUser()
+    {
+        try {
+            logOutbtn.click();
+        }
+        catch (Exception e)
+        {
+            logger.debug("Exception Caught: " + e);
+        }
+        return loginTab.isDisplayed();
     }
 }

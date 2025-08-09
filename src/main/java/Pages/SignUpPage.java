@@ -168,8 +168,9 @@ public class SignUpPage extends BasePageObject{
     public boolean accountCreatedVerification(String username)
     {
         try {
-            continueBtn.click();
-            logger.info(loggedinUsername.getText());
+            if (continueBtn.isDisplayed())
+            {continueBtn.click();}
+            else{logger.info(loggedinUsername.getText());}
         }
         catch (Exception e)
         {
